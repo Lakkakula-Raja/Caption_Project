@@ -1,17 +1,14 @@
 *** Settings ***
-Documentation       this file handles browser,resorses to cteate keywords
+Documentation       this program will automate the user to launch brower
 Library     SeleniumLibrary
-#Library    Screenshot
 *** Variables ***
-${BROWSER}      edge
-${URL}      https://opensource-demo.orangehrmlive.com/
+${BROWSER}      chrome
+${URL}      http://automationpractice.com/index.php
 
 *** Keywords ***
 launch Browser
     IF  '${BROWSER}'=='edge'
         Set Local Variable    ${driver_name}     msedgedriver.exe
-    ELSE IF  '${BROWSER}'== 'ff'
-        Set Local Variable    ${driver_name}     geckodriver.exe
     ELSE
         Set Local Variable    ${driver_name}     chromedriver.exe
     END
@@ -21,5 +18,4 @@ launch Browser
     Set Selenium Implicit Wait    30s
     Go To    url=${URL}
     Set Screenshot Directory    ${EXECDIR}${/}screenshot
-    #Take Screenshot
     Maximize Browser Window
