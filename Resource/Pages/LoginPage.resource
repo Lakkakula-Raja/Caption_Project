@@ -1,29 +1,33 @@
 *** Settings ***
 Documentation       this file handles all operations in login page
 Resource    ../Base/CommonFunctionality.resource
-#Test Template
+
 *** Variables ***
 ${SIGIN_LOCATER}     partial link=Sign in
 ${MAIL_LOCATOR}     id=email
+${EMAIL_LOCATOR}        id=email_create
 ${USERPASS_LOCATER}     id=passwd
 ${LOGINBUTTON}      id=SubmitLogin
+${SUBMIT_CREATE}    id=SubmitCreate
 
 *** Keywords ***
 Click Sigin
     Click Element    ${SIGIN_LOCATER}
+Email Create
+    [Arguments]     ${mail}
+    Input Text    ${EMAIL_LOCATOR}    ${mail}
+Crate Login
+    [Arguments]
+    Click Element    ${SUBMIT_CREATE}
 Enter Mail
-    [Arguments]     ${username}
-    Click Element    ${MAIL_LOCATOR}    ${username}
+    [Arguments]      ${username}
+    Input Text    ${MAIL_LOCATOR}    ${username}
+
 Enter Password
     [Arguments]     ${password}
     Input Password    ${USERPASS_LOCATER}    ${password}
+
 Click On Login
     Click Button    ${LOGINBUTTON}
-validation
-    Page Should Contain    My account
-    Page Should Contain    Order history and details
-    Page Should Contain    My credit slips
-    Page Should Contain    My addresses
-    Page Should Contain    My personal information
-    Page Should Contain    My wishlists
-    Capture Page Screenshot
+
+
